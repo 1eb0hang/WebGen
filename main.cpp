@@ -1,42 +1,20 @@
-#include <iostream>
-#include <string>
-#include <fstream>
+#include "head/command.h"
 
-#define ReadHost(x,y) std::cout<< x << ":";std::cin>> y ; std::cout<<std::endl
-
-#if 0
-template<typename t>
-void Create(){
-
-}
-#endif
-
-enum Cmd{
-    CREATE=0
-};
-
-int main(int argc, char* argv[]){
-    std::string msg = "Enter Command"; 
+int main(){
+    std::string com;
     std::string command;
-    Cmd cmd;
-    std::fstream file;
 
-    std::string fileText = "<html>\n<head>\n  <title>Example</title>\n</head>\n\n<body>\n<h1>Example</h1>\n<p>Hello World</p>\n</body>\n</html>";
+    std::cout<<">>";
+    std::cin>>com;
+ 
+    int i = 0;
+    int space = 0;
 
-    std::string path = "./example.html";
+    space = eg::find(32, com);
 
-    ReadHost(msg, command);
-
-    if(command == "create"){
-        file.open(path,std::ios::out);
-        
-        if(file.is_open() == false){
-            std::cout<<"Error while opening "<<path<<std::endl;
-        }
-
-        file<<fileText;
-        file.close();
-    }
+    std::cout<<com.substr(i, space+1)<<"\n"<< std::endl;
+    
+    i = space;
 
     std::cin.get();
     return 0;
