@@ -17,17 +17,8 @@ namespace eg{
         LOWER=2
     };
 
-    /**
-    @param thing character to look for within string
-    @param string string within which "thing" will be tested
-    @param stPos the starting position from which "thing" will be tested
-    @param endPos the end positon blah blah blah 
 
-    @returns index of the first occurance of the character "thing" from the starting postion
-    @throws returns -1 if @a thing is not found
-
-    */
-    int find(char thing, std::string string, int stPos = 0, int endPos = 0){
+    int find(unsigned char thing, std::string string, int stPos = 0, int endPos = 0){
         if(endPos == 0){
             endPos = (string.length()) - 1;
         }
@@ -38,7 +29,8 @@ namespace eg{
         while(pos <= endPos && posTrue == false){
             if(string[pos] == thing){
                 posTrue = true;
-            }else{
+            }
+	    else{
                 pos +=1;
             }
         }
@@ -51,32 +43,46 @@ namespace eg{
     }
 
 
-
     std::string CaseTo(std::string word, stCase strcase = stCase::NONE){
         std::string res = word;
 
         switch(strcase){
-            case LOWER:
+	case LOWER: //this is supposed to format to lowercase
                 std::cout<<"this is lowercase"<<std::endl;
                 for(int i=0;i<res.length();i+=1){
-                    if(res[i] > (char)90 && res[i] < (char)65){
-                        res[i] = (char)(((int)res[i]) + 32);
+		  int testChar = (int)res[i];
+		  if(testChar <= 90 && testChar >= 65){
+		    testChar += 32;
+		    res[i] = (char)testChar;
                     }
                 }
                 break;
 
             case UPPER:
-                std::cout<<"this is uppercase"<<std::endl;
-                for(int i=0;i<res.length();i+=1){
-                        if(res[i] > (char)97 && res[i] < (char)122){
-                            res[i] = (char)(((int)res[i]) + 32);
-                        }
+	         for(int i=0;i<res.length();i+=1){
+		  int testChar = (int)res[i];
+		  if(testChar <= 122 && testChar >= 97){
+		    testChar -= 32;
+		    res[i] = (char)testChar;
                     }
+                }
                 break;
+                
         }
 
         return res;
+    }
+
+#if 0
+    std::string get(std::string  message, std::string input){
+        char inter;
+        int count = 0;
+
+        while(count < (input.length() -1)){
+            inter = (char)std::cin.get();
+        }
 
     }
+#endif
 }
 
